@@ -1,0 +1,245 @@
+{% extends 'base1.html' %} {% block css %}
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!--===============================================================================================-->
+<link
+    rel="icon"
+    type="image/png"
+    href="/static/register/images/icons/favicon.ico"
+/>
+<!--===============================================================================================-->
+<link
+    rel="stylesheet"
+    type="text/css"
+    href="/static/register/vendor/bootstrap/css/bootstrap.min.css"
+/>
+<!--===============================================================================================-->
+<link
+    rel="stylesheet"
+    type="text/css"
+    href="/static/register/fonts/font-awesome-4.7.0/css/font-awesome.min.css"
+/>
+<!--===============================================================================================-->
+<link
+    rel="stylesheet"
+    type="text/css"
+    href="/static/register/fonts/iconic/css/material-design-iconic-font.min.css"
+/>
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css" />
+<!--===============================================================================================-->
+<link
+    rel="stylesheet"
+    type="text/css"
+    href="/static/register/vendor/css-hamburgers/hamburgers.min.css"
+/>
+<!--===============================================================================================-->
+<link
+    rel="stylesheet"
+    type="text/css"
+    href="/static/register/vendor/animsition/css/animsition.min.css"
+/>
+<!--===============================================================================================-->
+<link
+    rel="stylesheet"
+    type="text/css"
+    href="/static/register/vendor/select2/select2.min.css"
+/>
+<!--===============================================================================================-->
+<link
+    rel="stylesheet"
+    type="text/css"
+    href="/static/register/vendor/daterangepicker/daterangepicker.css"
+/>
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="/static/register/css/util.css" />
+<link rel="stylesheet" type="text/css" href="/static/register/css/main.css" />
+ {% block title %} || SignUp {% endblock title%} {% endblock css %}
+
+
+ {% block section %}
+<div class="container" data-aos="fade-up">
+    <div class="intro-img" data-aos="zoom-out" data-aos-delay="200">
+        <img src="/static/assets/img/welcome.svg" alt="" class="img-fluid" />
+    </div>
+
+    <div class="intro-info" data-aos="zoom-in" data-aos-delay="100">
+        <h2>Hey,<br /><span>connect with us</span><br />to keep track of your certificates</h2>
+        <div>
+            <a href="#signup" class="btn-get-started scrollto">Sign Up</a>
+            {% comment %} <a href="#services" class="btn-services scrollto">Our Services</a> {% endcomment %}
+        </div>
+    </div>
+</div>
+{% endblock section %} {% block navbarContent %}
+<li><a href="/signin">Login</a></li>
+<li><a href="/signup">Register</a></li>
+<li><a href="/forgotPassword">Forgot Password</a></li>
+{% endblock navbarContent %} {% block bodymain%}
+<div class="limiter">
+    <div class="container-login100" id='signup'>
+        <div class="wrap-login100">
+            <form class="login100-form validate-form" action='/signup' method='post'>
+
+                <span class="login100-form-logo">
+                    <i class="zmdi zmdi-landscape"></i>
+                </span>
+
+                <span class="login100-form-title p-b-34 p-t-27"> Sign Up </span>
+                {% comment %} message {% endcomment %}
+                    {% for message in messages %}
+                        <div
+                            class="alert alert-{{ message.tags }} mb-0 alert-dismissible fade show"
+                            role="alert"
+                        >
+                            <strong>Message : </strong> 
+                        {{ message }}
+                        
+                            <button
+                                type="button"
+                                class="close"
+                                data-dismiss="alert"
+                                aria-label="Close"
+                            >
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    {% endfor %}
+                {% comment %} message {% endcomment %}
+
+
+                <div
+                    class="wrap-input100 validate-input mt-3"
+                    data-validate="Enter Name"
+                >
+                    <input
+                        class="input100"
+                        type="text"
+                        name="username"
+                        id="username"
+                        placeholder="Username"
+                    />
+                    <span
+                        class="focus-input100"
+                        data-placeholder="&#xf207;"
+                    ></span>
+                </div>
+
+
+                <div
+                    class="wrap-input100 validate-input mt-3"
+                    data-validate="Enter Name"
+                >
+                    <input
+                        class="input100"
+                        type="text"
+                        name="fname"
+                        id="fname"
+                        placeholder="First Name"
+                    />
+                    <span
+                        class="focus-input100"
+                        data-placeholder="&#xf207;"
+                    ></span>
+                </div>
+
+                <div
+                    class="wrap-input100 validate-input mt-3"
+                    data-validate="Enter Name"
+                >
+                    <input
+                        class="input100"
+                        type="text"
+                        name="lname"
+                        id="lname"
+                        placeholder="Last Name"
+                    />
+                    <span
+                        class="focus-input100"
+                        data-placeholder="&#xf207;"
+                    ></span>
+                </div>
+
+                <div
+                    class="wrap-input100 validate-input"
+                    data-validate="Enter email"
+                >
+                    <input
+                        class="input100"
+                        type="text"
+                        name="email"
+                        id="email"
+                        placeholder="Email"
+                    />
+                    <span
+                        class="focus-input100"
+                        data-placeholder="&#xf15a;"
+                    ></span>
+                </div>
+
+                {% csrf_token %}
+                <div
+                    class="wrap-input100 validate-input"
+                    data-validate="Enter password"
+                >
+                    <input
+                        class="input100"
+                        type="password"
+                        name="pass1"
+                        id="pass1"
+                        placeholder="Password"
+                    />
+                    <span
+                        class="focus-input100"
+                        data-placeholder="&#xf191;"
+                    ></span>
+                </div>
+
+                <div
+                    class="wrap-input100 validate-input"
+                    data-validate="Enter password"
+                >
+                    <input
+                        class="input100"
+                        type="password"
+                        name="pass2"
+                        id="pass2                                                                   "
+                        placeholder="Enter Password again"
+                    />
+                    <span
+                        class="focus-input100"
+                        data-placeholder="&#xf191;"
+                    ></span>
+                </div>
+
+                <div class="container-login100-form-btn">
+                    <button type="submit" class="login100-form-btn">Sign Up</button>
+                </div>
+
+                <div class="text-center p-t-90">
+                    <p style="color: white">Already a member?</p>
+                    <a class="txt1" href="/signin"> Login </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div id="dropDownSelect1"></div>
+
+<!--===============================================================================================-->
+<script src="/static/register/vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+<script src="/static/register/vendor/animsition/js/animsition.min.js"></script>
+<!--===============================================================================================-->
+<script src="/static/register/vendor/bootstrap/js/popper.js"></script>
+<script src="/static/register/vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+<script src="/static/register/vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+<script src="/static/register/vendor/daterangepicker/moment.min.js"></script>
+<script src="/static/register/vendor/daterangepicker/daterangepicker.js"></script>
+<!--===============================================================================================-->
+<script src="/static/register/vendor/countdowntime/countdowntime.js"></script>
+<!--===============================================================================================-->
+<script src="/static/register/js/main.js"></script>
+
+{% endblock bodymain %}
