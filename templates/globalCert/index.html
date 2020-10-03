@@ -16,21 +16,28 @@
 {% endblock section %} {% block navbarContent %}
 <li><a href="#about">About Us</a></li>
 <li><a href="#services">Services</a></li>
-<li><a href="#team">Team</a></li>
-<li><a href="/signin">Register / Login</a></li>
+<li><a href="#clients">Clients</a></li>
 <li><a href="#contact">Contact Us</a></li>
-{% endblock navbarContent %}
-{% block css %}
+{% if user.is_authenticated %}
+    <ul class="navbar-nav ml-auto">
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Welcome {{ request.user.first_name }}
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="/handleLogout">Logout</a>
+            </div>
+            </li>
+    </ul>
 
-.aa{
-    background: #007bff;
-    border: 0;
-    border-radius: 20px;
-    padding: 8px 30px;
-    color: #fff;
-    transition: 0.3s;
-}
-{% endblock css %}
+        {% else %}
+        <li><a href="/signin">Register / Login</a></li>
+        {% endif %}
+
+
+
+{% endblock navbarContent %}
+
 
 
  {% block bodymain %}
@@ -1084,7 +1091,7 @@
                             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.7977468601184!2d103.77312491475396!3d1.2959625990547774!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31da1a56784202d9%3A0x488d08d6c1f88d6b!2sNational%20University%20of%20Singapore!5e0!3m2!1sen!2sin!4v1601571950660!5m2!1sen!2sin"
                             
                             frameborder="0"
-                            style="border: 0; width: 100%; height: 312px"
+                            style="border: 0; width: 100%; height: 345px"
                             allowfullscreen
                         ></iframe>
                     </div>
@@ -1094,7 +1101,7 @@
                     <div class="row">
                         <div class="col-md-5 info">
                             <i class="ion-ios-location-outline"></i>
-                            <p>A108 Adam Street, NY 535022</p>
+                            <p>21 Lower Kent Ridge Rd, Singapore 119077</p>
                         </div>
                         <div class="col-md-4 info">
                             <i class="ion-ios-email-outline"></i>
@@ -1105,8 +1112,15 @@
                             <p>+1 5589 55488 55</p>
                         </div>
                     </div>
-
-                    <div class="form">
+                    {% for message in messages %}
+                        <div class="alert alert-{{ message.tags }} mb-0 alert-dismissible fade show" role="alert">
+                        <strong>Message : </strong> {{ message }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        </div>
+                    {% endfor %}
+                    <div class="form mt-1">
                         <form action="/contact" method="post" role="form">
                             {% csrf_token %}
                             <div class="row">
@@ -1148,7 +1162,7 @@
                             </div>
                             
                             <div class="text-center">
-                                <button type="submit" title="Send Message" class='aa'>
+                                <button type="submit" title="Send Message" style='background-color: #4CAF50;border: none;color: white;padding: 15px 32px;text-align: center;text-decoration: none;display: inline-block;font-size: 16px;'">
                                     Send Message
                                 </button>
                             </div>

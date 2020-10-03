@@ -1,6 +1,7 @@
-{% extends 'base1.html' %} {%block css %}
+{% extends 'base1.html' %}
 
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+{% block css %}
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 <!--===============================================================================================-->
 <link
     rel="icon"
@@ -55,26 +56,45 @@
 <link rel="stylesheet" type="text/css" href="/static/register/css/util.css" />
 <link rel="stylesheet" type="text/css" href="/static/register/css/main.css" />
 
-{% endblock css %} {% block section %}
+ {% endblock css %}
+{% block title %} || View Certificate {% endblock title%}
+{% block navbarContent %} 
+    {% if user.is_authenticated %}
+    <ul class="navbar-nav ml-auto">
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Welcome {{ request.user.first_name }}
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="/handleLogout">Logout</a>
+            </div>
+            </li>
+    </ul>
+
+        {% else %}
+        <li><a href="/signin">Register / Login</a></li>
+        {% endif %}
+
+{% endblock navbarContent %}
+
+{% block section %} 
 <div class="container" data-aos="fade-up">
     <div class="intro-img" data-aos="zoom-out" data-aos-delay="200">
-        <img src="/static/assets/img/login.svg" alt="" class="img-fluid" />
+        <img src="/static/assets/img/cert.svg" alt="" class="img-fluid" />
     </div>
 
     <div class="intro-info" data-aos="zoom-in" data-aos-delay="100">
-        <h2>Your data is<br /><span>safely stored</span><br />here.</h2>
+        <h2>We provide<br /><span>solutions</span><br />for your business!</h2>
         <div>
-            <a href="#login" class="btn-get-started scrollto">Login</a>
-            <!-- <a href="#services" class="btn-services scrollto">Our Services</a> -->
+            <a href="#about" class="btn-get-started scrollto">Get Started</a>
+            <a href="#services" class="btn-services scrollto">Our Services</a>
         </div>
     </div>
 </div>
 
-{% endblock section %} {% block title %} || SignIn {% endblock title%} {% block navbarContent %}
-<li><a href="/signin">Login</a></li>
-<li><a href="/signup">Register</a></li>
-<li><a href="/reset_password">Forgot Password</a></li>
-{% endblock navbarContent %} {% block bodymain%}
+{% endblock section %}
+
+{% block bodymain %} 
 <div class="limiter aa">
     <div class="container-login100" id="login">
         <div class="wrap-login100">
@@ -83,7 +103,7 @@
                     <i class="zmdi zmdi-landscape"></i>
                 </span>
 
-                <span class="login100-form-title p-b-34 p-t-27"> Login </span>
+                <span class="login100-form-title p-b-34 p-t-27"> View / Verify Certificate </span>
                 {% comment %} message {% endcomment %}
                 {% for message in messages %}
                 <div
@@ -106,14 +126,14 @@
                 {% comment %} message {% endcomment %}
                 <div
                     class="wrap-input100 validate-input mt-2"
-                    data-validate="Enter Username"
+                    data-validate="Enter Event Name"
                 >
                     <input
                         class="input100"
                         type="text"
-                        name="username"
-                        id="loginemail"
-                        placeholder="Username"
+                        name="eventname"
+                        id="eventname"
+                        placeholder="Event Name"
                     />
 
                     {% csrf_token %}
@@ -124,35 +144,44 @@
                 </div>
 
                 <div
-                    class="wrap-input100 validate-input"
-                    data-validate="Enter password"
+                    class="wrap-input100 validate-input mt-2"
+                    data-validate="Enter Event Year"
                 >
                     <input
                         class="input100"
-                        type="password"
-                        name="loginpass"
-                        id="loginpass"
-                        placeholder="Password"
+                        type="text"
+                        name="eventyear"
+                        id="eventyear"
+                        placeholder="Event Year"
                     />
+
+                    
                     <span
                         class="focus-input100"
-                        data-placeholder="&#xf191;"
+                        data-placeholder="&#xf15a;"
                     ></span>
                 </div>
+                <div
+                    class="wrap-input100 validate-input mt-2"
+                    data-validate="Enter Certificate ID"
+                >
+                    <input
+                        class="input100"
+                        type="text"
+                        name="certificateid"
+                        id="certid"
+                        placeholder="Certificate ID"
+                    />
+
+                    <span
+                        class="focus-input100"
+                        data-placeholder="&#xf15a;"
+                    ></span>
+                </div>
+                
 
                 <div class="container-login100-form-btn">
-                    <button type="submit" class="login100-form-btn">Login</button>
-                </div>
-
-                <div class="text-center p-t-90">
-                    <a class="txt1" href="/forgotPassword">
-                        Forgot Password?
-                    </a>
-                </div>
-
-                <div class="text-center p-t-90">
-                    <p style="color: white">Not a member yet?</p>
-                    <a class="txt1" href="/signup"> Sign Up </a>
+                    <button type="submit" class="login100-form-btn">SUBMIT</button>
                 </div>
             </form>
         </div>
